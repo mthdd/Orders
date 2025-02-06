@@ -59,8 +59,8 @@ class OrderAdapter(private val orderActionListener: OrderActionListener) :
         val binding = ItemPersonBinding.inflate(inflater, parent, false)
 
         binding.root.setOnClickListener(this)
-        binding.more.setOnClickListener(this)
-        binding.likedImageView.setOnClickListener(this)
+    //    binding.more.setOnClickListener(this)
+     //   binding.likedImageView.setOnClickListener(this)
 
         return OrderViewHolder(binding)
     }
@@ -71,22 +71,22 @@ class OrderAdapter(private val orderActionListener: OrderActionListener) :
 
         with(holder.binding) {
             holder.itemView.tag = order
-            likedImageView.tag = order
-            more.tag = order
+    //        likedImageView.tag = order
+    //        more.tag = order
 
             val color =
                 if (order.isLiked) R.color.red else R.color.grey // Цвет "сердца", если пользователь был лайкнут
 
             nameTextView.text = order.name // Отрисовка имени пользователя
             companyTextView.text = order.companyName // Отрисовка компании пользователя
-            likedImageView.setColorFilter( // Отрисовка цвета "сердца"
-                ContextCompat.getColor(context, color),
-                android.graphics.PorterDuff.Mode.SRC_IN
-            )
+  //          likedImageView.setColorFilter( // Отрисовка цвета "сердца"
+  //              ContextCompat.getColor(context, color),
+  //              android.graphics.PorterDuff.Mode.SRC_IN
+  //          )
             Glide.with(context).load(order.photo)
                 .circleCrop() // Отрисовка фотографии пользователя с помощью библиотеки Glide
                 .error(R.drawable.ic_order)
-                .placeholder(R.drawable.ic_order).into(imageView)
+         //       .placeholder(R.drawable.ic_order).into(imageView)
         }
     }
 
@@ -94,8 +94,8 @@ class OrderAdapter(private val orderActionListener: OrderActionListener) :
         val order: Order = view.tag as Order // Получаем из тэга человека
 
         when (view.id) {
-            R.id.more -> showPopupMenu(view)
-            R.id.likedImageView -> orderActionListener.onOrderLike(order)
+    //        R.id.more -> showPopupMenu(view)
+    //        R.id.likedImageView -> orderActionListener.onOrderLike(order)
             else -> orderActionListener.onOrderGetId(order)
         }
     }
